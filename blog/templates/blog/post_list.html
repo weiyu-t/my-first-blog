@@ -1,20 +1,14 @@
-<html>
-    <head>
-        <title>delalalalalala</title>
-    </head>
-    <body>
-        <div>
-            <h1>刚上手不是很熟</h1>
-        </div>
 
-        <div>
-            <h2>My first post</h2>
-            <p>模板是教程里复制的，我随便写一个玩玩</p>
-        </div>
-
-        <div>
-            <h2>My second post</h2>
-            <p>我觉得吧我可能不应该总说让你上我，这样显得很没有诚意；如果换成诚邀你对我进行一些性教育，是不是就好多了？</p>
-        </div>
-    </body>
-</html>
+                {% extends 'blog/base.html' %}
+                
+                {% block content %}
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="date">
+                                <p>published: {{ post.published_date }}</p>
+                            </div>
+                            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                            <p>{{ post.text|linebreaksbr }}</p>
+                        </div>
+                    {% endfor %}
+                {% endblock %}
